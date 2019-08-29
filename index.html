@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!!</title>
+    <link rel="stylesheet" href="./assets/select2.css">
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+
+
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>Hello World!</h1>
+
+        <div id="log"></div>
+        <div id="error"></div>
+        <div id="ports"></div>
+        <select class="form-control" onchange='connect(this.value)' id="portSelect">
+            <option> -- Pilih Port --</option>
+        </select>
+
+        <div id="conf" style="display:none;">
+            <select class="form-control" onchange='exec(this.value)' id="modeSelect">
+                <option> -- Pilih Mode --</option>
+            </select>
+            <button
+                class="btn btn-primary btn-lg btn-block jscolor {valueElement:'chosen-value', onFineChange:'setTextColor(this)'}">
+                Pick text color
+            </button>
+            </br>
+            <button onclick="set('b+')" type="button" class="btn btn-lg btn-primary btn-block ">+ Brightness</button>
+            <button onclick="set('b-')" type="button" class="btn btn-lg btn-primary btn-block ">- Brightness</button>
+            <button onclick="set('s+')" type="button" class="btn btn-lg btn-primary btn-block ">- Speed</button>
+            <button onclick="set('s-')" type="button" class="btn btn-lg btn-primary btn-block ">+ Speed</button>
+        </div>
+    </div>
+
+
+</body>
+
+
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="./renderer.js"></script>
+<script src="./assets/modes.js"></script>
+
+<script type="text/javascript" src="./assets/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="./assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./assets/select2.min.js"></script>
+<script type="text/javascript" src="./assets/bootstrap/jscolor.js"></script>
+<script>
+    $('select').select2();
+
+    var elm = document.getElementById('modeSelect'), // get the select
+        df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
+
+    modes.forEach((element, index, array) => {
+        var option = document.createElement('option'); // create the option element
+        option.value = element.id; // set the value property
+        option.appendChild(document.createTextNode(element.name)); // set the textContent in a safe way.
+        df.appendChild(option); // append the option to the document fragment// same myArray object 3 times
+    });
+
+    elm.appendChild(df);
+
+    function setTextColor(picker) {
+        set('c 0x' + picker.toString())
+    }
+
+
+
+
+
+</script>
+
+</html>
