@@ -1,15 +1,18 @@
 {
-    "name": "electron-serialport",
+    "name": "a_rgb-controller",
+    "productName": "A RGB CONTROLLER",
     "version": "1.0.1",
-    "description": "A minimal Electron application with node serialport",
+    "description": "A small app to controller a rgb",
     "main": "main.js",
     "scripts": {
         "start": "electron .",
-        "install": "electron-rebuild"
+        "install": "electron-rebuild",
+        "mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/icon.icns --prune=true --out=release-builds",
+        "deb64": "electron-installer-debian --src release-builds/electron-tutorial-app-linux-x64/ --arch amd64 --config debian.json"
     },
     "repository": {
         "type": "git",
-        "url": "git@github.com:johnny-five-io/electron-serialport.git"
+        "url": "https://github.com/hasanbasri1993/rgb-controller.git"
     },
     "keywords": [
         "Electron",
@@ -22,6 +25,10 @@
     "license": "CC0-1.0",
     "devDependencies": {
         "electron": "^5.0.5",
+        "electron-installer-debian": "^2.0.1",
+        "electron-installer-dmg": "^3.0.0",
+        "electron-installer-windows": "^2.0.0",
+        "electron-packager": "^14.0.6",
         "electron-rebuild": "^1.8.5"
     },
     "dependencies": {
