@@ -1,39 +1,47 @@
 {
-    "name": "a_rgb-controller",
+    "name": "a_rgb_controller",
     "productName": "A RGB CONTROLLER",
     "version": "1.0.1",
     "description": "A small app to controller a rgb",
     "main": "main.js",
     "scripts": {
         "start": "electron .",
-        "install": "electron-rebuild",
-        "mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/icon.icns --prune=true --out=release-builds",
-        "deb64": "electron-installer-debian --src release-builds/electron-tutorial-app-linux-x64/ --arch amd64 --config debian.json"
+        "install": "electron-rebuild -b -v",
+        "mac": "electron-builder -m",
+        "win": "electron-builder -w --ia32",
+        "lin": "electron-builder -l --ia32",
+        "make-cert": "electron-builder create-self-signed-cert -p HasanBasri"
+    },
+    "build": {
+        "appId": "com.hasanbasri93.rgb_controller",
+        "directories": {
+            "buildResources": "./assets/icons"
+        },
+        "mac": {
+            "category": "public.app-category.productivity",
+            "target": "zip"
+        },
+        "win": {
+            "certificateFile": "private/RGB Controller.p12",
+            "verifyUpdateCodeSignature": false,
+            "publisherName": "HasanBasri"
+        },
+        "linux": {
+            "category": "Productivity"
+        }
     },
     "repository": {
         "type": "git",
         "url": "https://github.com/hasanbasri1993/rgb-controller.git"
     },
-    "keywords": [
-        "Electron",
-        "quick",
-        "start",
-        "tutorial",
-        "demo"
-    ],
-    "author": "GitHub",
+    "author": "Hasan Basri",
     "license": "CC0-1.0",
     "devDependencies": {
-        "electron": "^5.0.5",
-        "electron-installer-debian": "^2.0.1",
-        "electron-installer-dmg": "^3.0.0",
-        "electron-installer-windows": "^2.0.0",
-        "electron-packager": "^14.0.6",
-        "electron-rebuild": "^1.8.5"
+        "electron": "^6.0.9",
+        "electron-builder": "^21.2.0",
+        "electron-rebuild": "^1.8.6"
     },
     "dependencies": {
-        "data-table": "^2.0.0",
-        "electron-builder": "^21.2.0",
         "serialport": "^7.1.5"
     }
 }
